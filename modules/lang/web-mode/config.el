@@ -58,19 +58,24 @@
   (add-to-list 'dtrt-indent-hook-mapping-list '(web-mode javascript xa:web-mode-indent-offset))
   )
 
-;; https://github.com/ananthakumaran/tide
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1)
-  (message "tide mode setup"))
+(use-package! tide
+  :init
+  ;; https://github.com/ananthakumaran/tide
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    ;; company is an optional dependency. You have to
+    ;; install it separately via package-install
+    ;; `M-x package-install [ret] company`
+    (after! company (company-mode +1))
+    (message "tide mode setup"))
+  :config
+  (setq tide-node-executable "~/.local/bin/podman/node")
+  )
 
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
@@ -80,10 +85,13 @@
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 
+
 (use-package! flycheck
   :config
   ;; use eslint with web-mode for jsx files
-  (flycheck-add-mode 'javascript-eslint 'web-mode))
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (after! tide (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)))
+
 
 (defun xa:web-mode-hook () (interactive)
   (progn
@@ -101,8 +109,6 @@
 (add-hook 'web-mode-hook 'dtrt-indent-adapt)
 (add-hook 'web-mode-hook 'xa:web-mode-hook)
 
-(flycheck-add-mode 'javascript-eslint 'web-mode)
-(flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
 
 (defadvice company-tern (before web-mode-set-up-ac-sources activate)
   "Set `tern-mode' based on current language before running company-tern."
