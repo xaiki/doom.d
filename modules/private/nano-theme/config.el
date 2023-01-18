@@ -23,6 +23,7 @@
   ;;(require 'nano-colors)
   ;;(require 'nano-minibuffer)
   ;;(require 'nano-command)
+  (require 'nano-writer)
 
   (nano-theme-set-dark)
   (nano-faces)
@@ -47,3 +48,4 @@
 
   )
 
+(use-package! org-outer-indent)
