@@ -10,20 +10,25 @@
 
   (require 'nano-base-colors)
   (require 'nano-faces)
+  (require 'nano-defaults)
+  (require 'nano-colors)
+
   (require 'nano-theme-light)
   (require 'nano-theme-dark)
   (require 'nano-theme)
   (require 'nano-help)
-  ;;(require 'nano-splash)
   (require 'nano-modeline)
-  ;;(require 'nano-defaults)
   ;;(require 'nano-session)
   ;;(require 'nano-bindings)
-  ;; (require 'nano-counsel)
-  ;;(require 'nano-colors)
-  ;;(require 'nano-minibuffer)
+  ;;(require 'nano-counsel)
   ;;(require 'nano-command)
   (require 'nano-writer)
+
+  (when (modulep! +minibuffer)
+    (require 'nano-minibuffer))
+
+  (when (modulep! +splash)
+    (require 'nano-splash))
 
   (nano-theme-set-dark)
   (nano-faces)
