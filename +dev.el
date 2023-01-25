@@ -4,18 +4,18 @@
 ;; MISC
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; less is more
+(defun rainbow-delimiters-mode () nil)
+
+;; find rust stuff
+(add-to-list 'exec-path (concat (getenv "HOME") "/.cargo/bin"))
+
 (use-package! format-all
   :defer t)
-
 
 (use-package! which-func
   :defer t
   :commands which-function)
-
-
-(after! company
-  ;; (setq company-idle-delay 0.2)
-  (setq company-format-margin-function #'company-detect-icons-margin))
 
 (use-package! paredit
   :defer t
@@ -44,7 +44,7 @@
        '((lambda (endp delimiter) nil)))
   (paredit-mode 1))
 
-(defun xa:set-prog-setup()
+(defun xa:company-setup()
   "settings for prog modes"
   (interactive)
   (progn
@@ -52,15 +52,28 @@
     (local-set-key (kbd "C-c C-h") #'company-show-doc-inhibit-popup)))
 
 (add-hook! '(prog-mode-hook) #'xa:paredit-coding)
-(add-hook! '(prog-mode-hook) #'xa:set-prog-setup)
+;;(add-hook! '(prog-mode-hook) #'xa:set-prog-setup)
+;;
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; JS, WEB
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list
+   'eglot-server-programs
+   '(typescript-ts-mode "typescript-language-server" "--stdio"))
+(add-to-list
+   'eglot-server-programs
+   '(tsx-ts-mode "typescript-language-server" "--stdio"))
+
+(add-to-list 'exec-path (concat (getenv "XDG_DATA_HOME") "/node/bin"))
+;;(unless (eq 0 (shell-command "node --version"))
+;;  (shell-command "export N_PREFIX=$XDG_DATA_HOME/node; curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts"))
+
 (add-hook! '(web-mode-hook html-mode-hook) (setq-local format-all-formatters '(("HTML" prettier))))
 (add-hook! 'typescript-mode-hook (setq-local format-all-formatters '(("TypeScript" prettier))))
-(add-hook! 'rjsx-mode-hook (setq-local format-all-formatters '(("JavaScript" prettier))))
+;;(add-hook! 'tsx-mode-hook (setq-local format-all-formatters '(("TypeScript" prettier))))
 
 (after! web-mode
   (web-mode-toggle-current-element-highlight)
@@ -112,30 +125,3 @@
         lsp-ui-doc-include-signature t
         lsp-ui-doc-max-height 15
         lsp-ui-doc-max-width 100))
-
-(use-package lsp-docker
-  :when (not (modulep! :tools lsp +eglot))
-  :defer t
-  :commands lsp-docker-init-clients
-  :config
-  (defvar lsp-docker-client-packages
-    '(lsp-css lsp-clients lsp-bash lsp-go lsp-pyls lsp-html lsp-typescript
-              lsp-terraform lsp-cpp))
-
-  (defvar lsp-docker-client-configs
-    (list
-     (list :server-id 'bash-ls :docker-server-id 'bashls-docker :server-command "bash-language-server start")
-     (list :server-id 'clangd :docker-server-id 'clangd-docker :server-command "ccls")
-     (list :server-id 'css-ls :docker-server-id 'cssls-docker :server-command "css-languageserver --stdio")
-     (list :server-id 'dockerfile-ls :docker-server-id 'dockerfilels-docker :server-command "docker-langserver --stdio")
-     (list :server-id 'gopls :docker-server-id 'gopls-docker :server-command "gopls")
-     (list :server-id 'html-ls :docker-server-id 'htmls-docker :server-command "html-languageserver --stdio")
-     (list :server-id 'pyls :docker-server-id 'pyls-docker :server-command "pyls")
-     (list :server-id 'ts-ls :docker-server-id 'tsls-docker :server-command "typescript-language-server --stdio")))
-
-  ;; (lsp-docker-init-clients
-  ;;  :path-mappings `((,(file-truename "~/av") . "/code"))
-  ;;  ;; :docker-image-id "my-lsp-docker-container:1.0"
-  ;;  :client-packages '(lsp-pyls)
-  ;;  :client-configs lsp-docker-client-configs)
-  )
