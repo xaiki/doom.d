@@ -12,6 +12,7 @@
   (global-set-key "" 'ido-find-file)
   )
 
+(tool-bar-mode -1)
 ;; (use-package! dashboard
 ;;   :ensure t
 ;;   :config
