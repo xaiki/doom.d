@@ -1,9 +1,11 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 (load! "+dev")
-(load! "+git")
+;;(load! "+git")
 (load! "+ui")
 (load! "+apps")
+(load! "+email")
+
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
