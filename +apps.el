@@ -4,7 +4,8 @@
   :load-path  "~/src/telega.el"
   :defer t
   :config
-  (setq telega-server-command "~/src/telega.el/server/telega-server")
+  (setq telega-server-command "~/src/Emacs/telega.el/server/telega-server")
+  ;;  (setq telega-use-docker "podman")
   (require 'telega-stories)
   (telega-stories-mode 1)
   ;; "Emacs Stories" rootview
