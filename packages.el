@@ -64,17 +64,24 @@
                    lsp-python-ms
                    pyimport
                    drag-stuff
-                   emmet-mode)
+                   emmet-mode
+                   rjsx-mode
+                   js2-mode
+                   jso2-refactor
+                   rainbow-mode
+                   rainbow-delimiters
+                   docker-tramp ;; deprecated in emacs29 in favour of tramp-container
+                   )
 ;; misc
 (package! format-all)
-(when (not (modulep! :tools lsp +eglot))
-  (package! lsp-docker))
 
 ;; ui
 (package! dashboard)
 
+;; completion
+;;(package! corfu)
+
 ;; programming
-(package! bazel-mode :recipe (:host github :repo "bazelbuild/emacs-bazel-mode"))
 (package! graphql-mode)
 (package! protobuf-mode)
 (package! gn-mode)
@@ -84,3 +91,7 @@
 
 ;; apps
 (package! telega)
+
+;; email
+;;(package! mu4e) ;; XXX: this will fail building on flatpak
+(package! mu4e-dashboard :recipe (:host github :repo "rougier/mu4e-dashboard"))
