@@ -8,6 +8,10 @@
 ;; Setup the theme.
 (require 'setup-theme)
 
+(when (or (string-match "flatpak" (getenv "EMACS"))
+          (string-match "/home" (getenv "EMACS")))
+  (setenv "EMACS" "emacs"))
+
 ;; Select locale.
 (defcustom xa:lang "en_US"
   "language for all things emacs")
