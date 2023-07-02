@@ -1,5 +1,10 @@
 ;;; +org.el -*- lexical-binding: t; -*-
 
+;; If you use `org' and don't want your org files in the default location below, change
+;; `org-directory'. It must be set before org loads!
+(setq org-directory "~/Documents/org"
+      org-agenda-files '("~/Documents/org/Agenda"))
+
 (use-package! org-outer-indent)
 (use-package! svg-tag-mode
   :config
@@ -22,7 +27,8 @@
              '("AUTO" "polyglossia" t ("xelatex" "lualatex")))
 
 (setenv "TEXINPUTS" (concat user-emacs-directory "latex"))
-(setq org-export-latex-classes nil)
+(setq org-export-latex-classes nil
+      org-footnote-define-inlite t)
 (setq xa:pdftk-cmd (concat "pdftk %b.pdf output %b.crypt.pdf owner_pw "
                            (shell-command-to-string "apg -n 1 +s")))
 (setq xa:latex-podman "podman run -ti -v `echo %O | sed s/'\\\/[^\/]*$'//`:/data:Z -w /data docker.io/moss/xelatex  %latex -interaction nonstopmode -output-directory %o %f")
@@ -51,3 +57,10 @@ same directory as the org-buffer and insert a link to this file."
 
 (use-package! org-caldav
   :config )
+
+(use-package! ox-pandoc-html
+  :after org
+  :load-path "~/.doom.d/local-packages/ox-pandoc-html")
+
+(use-package! write-mode
+  :load-path "~/.doom.d/local-packages/write-mode")
