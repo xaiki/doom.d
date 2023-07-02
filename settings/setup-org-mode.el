@@ -151,7 +151,7 @@ This function performs the following replacements in the string S:
                'ronisbr/org-export-process-name-tags))
 
 ;; Se the default dictionary in org-mode to Brazilian Portuguese.
-(add-hook! 'org-mode-hook (ispell-change-dictionary "pt_BR"))
+(add-hook! 'org-mode-hook (ispell-change-dictionary xa:lang))
 
 ;; =========================================================================================
 ;;                                      Org archive

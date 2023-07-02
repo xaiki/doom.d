@@ -51,4 +51,3 @@ same directory as the org-buffer and insert a link to this file."
 
 (use-package! org-caldav
   :config )
-

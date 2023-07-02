@@ -9,10 +9,17 @@
 (require 'setup-theme)
 
 ;; Select locale.
-(setenv "LANG" "en_US.UTF-8")
-(setenv "LC_CTYPE" "en_US.UTF-8")
-(setenv "LC_ALL" "en_US.UTF-8")
-(set-locale-environment "en_US.UTF-8")
+(defcustom xa:lang "en_US"
+  "language for all things emacs")
+(defcustom xa:coding "UTF-8"
+  "encoding for all things emacs")
+(defun xa:lang-code ()
+  (concat xa:lang "." xa:coding))
+
+(setenv "LANG" (xa:lang-code))
+(setenv "LC_CTYPE" (xa:lang-code))
+(setenv "LC_ALL" (xa:lang-code))
+(set-locale-environment (xa:lang-code))
 
 ;; Set fill-columns at position 92.
 (setq-default fill-column 80)
