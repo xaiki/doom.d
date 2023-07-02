@@ -112,4 +112,4 @@
 (package! org-caldav)
 
 ;; ui
-(package! nano-emacs :recipe(:host github :repo "rougier/nano-emacs"))
+(package! nano :recipe (:host github :repo "rougier/nano-emacs"))

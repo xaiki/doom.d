@@ -34,3 +34,7 @@
 
   (nano-dark)
   (nano-mode))
+
+(use-package! nano-emacs
+  :config
+  (require 'doom-modeline))
