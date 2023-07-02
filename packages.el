@@ -83,6 +83,33 @@
   :recipe (:host github
            :repo "ronisbr/doom-nano-modeline"))
 
+;; programming
+(package! graphql-mode)
+(package! protobuf-mode)
+(package! gn-mode)
+(package! paredit)
+(package! magit-delta)
+(package! fish-mode)
+(package! elpy)
+(package! dts-mode)
+;;(package! eglot)
+(package! yuck-mode)
+;;(package! jupyter)
 (package! julia-mode
   :pin "a20367f2826b26084abd2f403219218813007123")
 (unpin! julia-repl)
+
+;; apps
+(package! telega)
+(package! mastodon)
+(package! mastodon-alt :recipe (:host github :repo "rougier/mastodon-alt"))
+
+;; email
+;;(package! mu4e) ;; XXX: this will fail building on flatpak
+(package! mu4e-dashboard :recipe (:host github :repo "rougier/mu4e-dashboard"))
+
+;; org
+(package! org-caldav)
+
+;; ui
+(package! nano-emacs :recipe(:host github :repo "rougier/nano-emacs"))
