@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq user-full-name "Ronan Arraes Jardim Chagas"
-      user-mail-address "ronisbr@gmail.com")
+(setq user-full-name "Niv Sardi"
+      user-mail-address "x@btn.sh")
 
 (add-load-path! "~/.doom.d/settings")
 
