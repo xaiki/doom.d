@@ -9,13 +9,13 @@
 (require 'setup-theme)
 
 ;; Select locale.
-(setenv "LANG" "pt_BR.UTF-8")
-(setenv "LC_CTYPE" "pt_BR.UTF-8")
-(setenv "LC_ALL" "pt_BR.UTF-8")
-(set-locale-environment "pt_BR.UTF-8")
+(setenv "LANG" "en_US.UTF-8")
+(setenv "LC_CTYPE" "en_US.UTF-8")
+(setenv "LC_ALL" "en_US.UTF-8")
+(set-locale-environment "en_US.UTF-8")
 
 ;; Set fill-columns at position 92.
-(setq-default fill-column 92)
+(setq-default fill-column 80)
 
 ;; Enable smooth scrolling by default.
 (pixel-scroll-precision-mode 1)
