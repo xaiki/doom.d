@@ -34,7 +34,6 @@
 (require 'setup-company)
 (require 'setup-doom-nano-modeline)
 (require 'setup-emojify)
-(require 'setup-evil)
 (require 'setup-julia-ts-mode)
 (require 'setup-keybindings)
 (require 'setup-layout)

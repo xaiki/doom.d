@@ -38,7 +38,7 @@
        zen
 
        :editor
-       (evil +everywhere)
+       ;;(evil +everywhere)
        file-templates
        fold
        multiple-cursors
@@ -73,26 +73,31 @@
 
        :lang
        (cc +lsp)
+       csharp                   ; unity, .NET, and mono shenanigans
+       data                     ; config/data formats
        emacs-lisp
+       json              ; At least it ain't XML
+       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        (julia +lsp)
-       latex
-       markdown
+       latex             ; writing papers in Emacs has never been so fun
+       markdown         ; writing docs for people to ignore
        (org +dragndrop +pretty +roam2)
        python
        qt
-       sh
+       sh     ; she sells {ba,z,fi}sh shells on the C xor
+       (rust +lsp +tree-sitter)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (web +lsp)                       ; the tubes
+       yaml              ; JSON, but readable
 
        :email
+       (mu4e +org)
 
        :app
        everywhere
 
        :config
        ;;literate
-       (default +bindings +smartparens))
-
-;; Make evil respect visual lines.
-(setq evil-respect-visual-line-mode t)
+       (default +bindings))
 
 ;; Disable deferred compilation.
 ;;

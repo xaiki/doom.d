@@ -49,6 +49,29 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+;; disabled packages
+(disable-packages! solaire-mode
+                   osx-trash
+                   realgud
+                   realgud-trepan-ni
+                   ccls
+;;                   tide
+                   swiper
+                   forge
+                   code-review
+                   anaconda-mode
+                   company-anaconda
+                   lsp-python-ms
+                   pyimport
+                   drag-stuff
+                   emmet-mode
+                   rjsx-mode
+                   js2-mode
+                   jso2-refactor
+;;                   rainbow-delimiters
+                   docker-tramp ;; deprecated in emacs29 in favour of tramp-container
+                   )
+
 (package! doct)
 (package! svg-tag-mode)
 (package! treesit-auto)
