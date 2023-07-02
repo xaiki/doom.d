@@ -48,6 +48,8 @@
 (require 'setup-vertico)
 (require 'setup-vterm)
 
+(load! "+dev")
+
 ;; Local packages.
 (use-package! comment-align
   :load-path "~/.doom.d/local-lisp")

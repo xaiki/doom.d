@@ -12,7 +12,7 @@
   (set-fontset-font t ?🅱 "Noto Sans Mono SemiCondensed"))
 
 (after! doom-themes
-  (load-theme 'doom-nano-light t))
+  (load-theme 'doom-nano-dark t))
 
 ;; The theme `doom-monokai-classic' does not set the color for variables.
 (custom-theme-set-faces! '(doom-monokai-classic)
